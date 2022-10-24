@@ -6,13 +6,14 @@
 #    By: cherrewi <cherrewi@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/24 14:31:32 by cherrewi      #+#    #+#                  #
-#    Updated: 2022/10/24 15:22:53 by cherrewi      ########   odam.nl          #
+#    Updated: 2022/10/24 16:42:46 by cherrewi      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 SRCS = ft_printf.c validations.c
-OBJS = $(SRCS:.c=.o)
+OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
+OBJDIR = objects
 FLAGS = -Wall -Wextra -Werror
 LIBFTDIR = libft
 LIBFTNAME = libft.a
@@ -25,15 +26,18 @@ $(NAME): $(OBJS) $(LIBFTDIR)/$(LIBFTNAME)
 $(LIBFTDIR)/$(LIBFTNAME):
 	cd $(LIBFTDIR) ; make
 
-%.o: %.c
+$(OBJDIR):
+	mkdir $(OBJDIR)
+
+$(OBJDIR)/%.o: %.c $(OBJDIR)
 	$(CC) -c $(FLAGS) $< -o $@ -I ./$(LIBFTDIR)
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJDIR)
 	cd $(LIBFTDIR) ; make clean
 
 fclean:
-	rm -f $(OBJS)
+	rm -rf $(OBJDIR)
 	rm -f $(NAME)
 	cd $(LIBFTDIR) ; make fclean
 
