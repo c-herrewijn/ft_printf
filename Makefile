@@ -6,7 +6,7 @@
 #    By: cherrewi <cherrewi@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/24 14:31:32 by cherrewi      #+#    #+#                  #
-#    Updated: 2022/10/24 16:42:46 by cherrewi      ########   odam.nl          #
+#    Updated: 2022/10/25 10:49:50 by cherrewi      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,10 @@ LIBFTNAME = libft.a
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFTDIR)/$(LIBFTNAME)
-	ar rc $(NAME) $(OBJS) $(LIBFTDIR)/$(LIBFTNAME)
+	ar rc $(NAME) $(OBJS)
 
 $(LIBFTDIR)/$(LIBFTNAME):
-	cd $(LIBFTDIR) ; make
+	cd $(LIBFTDIR) ; make bonus
 
 $(OBJDIR):
 	mkdir $(OBJDIR)
@@ -44,7 +44,7 @@ fclean:
 re: fclean all
 
 test: $(NAME)
-	$(CC) $(NAME) tests/main.c -o test.out -I ./$(LIBFTDIR) 
+	$(CC) $(NAME) $(LIBFTDIR)/$(LIBFTNAME) tests/main.c -o test.out -I ./$(LIBFTDIR) 
 	./test.out
 
 .PHONY: all clean fclean re
