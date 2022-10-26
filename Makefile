@@ -6,7 +6,7 @@
 #    By: cherrewi <cherrewi@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/24 14:31:32 by cherrewi      #+#    #+#                  #
-#    Updated: 2022/10/26 10:02:51 by cherrewi      ########   odam.nl          #
+#    Updated: 2022/10/26 11:49:58 by cherrewi      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ LIBFTNAME = libft.a
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFTDIR)/$(LIBFTNAME)
+	cp $(LIBFTDIR)/$(LIBFTNAME) $(NAME)
 	ar rc $(NAME) $(OBJS)
 
 $(LIBFTDIR)/$(LIBFTNAME):
@@ -44,7 +45,7 @@ fclean:
 re: fclean all
 
 test: $(NAME)
-	$(CC) $(NAME) $(LIBFTDIR)/$(LIBFTNAME) tests/main.c tests/test_ft_printf.c -o test.out -I ./$(LIBFTDIR) 
+	$(CC) $(NAME) tests/main.c tests/test_ft_printf.c -o test.out 
 	./test.out
 
 .PHONY: all clean fclean re
