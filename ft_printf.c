@@ -6,7 +6,7 @@
 /*   By: cherrewi <cherrewi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 20:30:20 by cherrewi      #+#    #+#                 */
-/*   Updated: 2022/10/27 11:16:53 by cherrewi      ########   odam.nl         */
+/*   Updated: 2022/10/27 14:01:43 by cherrewi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 static void	print_va_arg(const char format_char, int *print_len, va_list ap)
 {
-	char	c;
-	int		nr;
-	char	*str;
+	char					c;
+	long int				nr;
+	unsigned long long int	p_nr;
+	char					*str;
 
 	if (format_char == '%')
 	{
@@ -27,10 +28,21 @@ static void	print_va_arg(const char format_char, int *print_len, va_list ap)
 		c = va_arg(ap, int);
 		*print_len += write(1, &c, 1);
 	}
-	if (format_char == 'd')
+	if (format_char == 'd' || format_char == 'i')
 	{
 		nr = va_arg(ap, int);
 		*print_len += ft_putnbr_base(nr, "0123456789");
+	}
+	if (format_char == 'p')
+	{
+		p_nr = va_arg(ap, unsigned long long int);
+		*print_len += write(1, "0x", 2);
+		ft_putpointer(p_nr, print_len);
+	}
+	if (format_char == 'x')
+	{
+		nr = va_arg(ap, int);
+		*print_len += ft_putnbr_base(nr, "0123456789abcdef");
 	}
 	if (format_char == 's')
 	{

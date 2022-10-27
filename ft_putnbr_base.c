@@ -6,7 +6,7 @@
 /*   By: cherrewi <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/14 16:32:47 by cherrewi      #+#    #+#                 */
-/*   Updated: 2022/10/27 11:05:35 by cherrewi      ########   odam.nl         */
+/*   Updated: 2022/10/27 13:56:47 by cherrewi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ static int	len_base(char *base)
 		return (i);
 }
 
-size_t	ft_putnbr_base(int nbr, char *base)
+size_t	ft_putnbr_base(long long int nbr, char *base)
 {
-	int			last_digit;
-	int			int_base;
-	long int	li_nbr;
-	size_t		write_len;
+	int				last_digit;
+	int				int_base;
+	long long int	abs_nbr;
+	size_t			write_len;
 
 	write_len = 0;
 	int_base = len_base(base);
@@ -51,14 +51,28 @@ size_t	ft_putnbr_base(int nbr, char *base)
 		if (nbr < 0)
 		{
 			write_len += write(1, "-", 1);
-			li_nbr = ((long int)nbr * -1);
+			abs_nbr = (nbr * -1);
 		}
 		else
-			li_nbr = (long int)nbr;
-		if (li_nbr >= int_base)
-			write_len += ft_putnbr_base(li_nbr / int_base, base);
-		last_digit = li_nbr % int_base;
+			abs_nbr = nbr;
+		if (abs_nbr >= int_base)
+			write_len += ft_putnbr_base(abs_nbr / int_base, base);
+		last_digit = abs_nbr % int_base;
 		write_len += write(1, &base[last_digit], 1);
 	}
 	return (write_len);
+}
+
+void	ft_putpointer(unsigned long long nbr, int *print_len)
+{
+	char	*base;
+
+	base = "0123456789abcdef";
+	if (nbr < 16)
+		*print_len += write(1, &base[nbr], 1);
+	else
+	{
+		ft_putpointer(nbr / 16, print_len);
+		*print_len += write(1, &base[nbr % 16], 1);
+	}
 }
