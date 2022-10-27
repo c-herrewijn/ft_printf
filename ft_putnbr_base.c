@@ -6,7 +6,7 @@
 /*   By: cherrewi <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/14 16:32:47 by cherrewi      #+#    #+#                 */
-/*   Updated: 2022/10/27 13:56:47 by cherrewi      ########   odam.nl         */
+/*   Updated: 2022/10/27 15:04:02 by cherrewi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,26 @@ void	ft_putpointer(unsigned long long nbr, int *print_len)
 	{
 		ft_putpointer(nbr / 16, print_len);
 		*print_len += write(1, &base[nbr % 16], 1);
+	}
+}
+
+void	ft_putunsignedhex(unsigned int nbr, int *print_len, char var_case)
+{
+	char	*base;
+
+	base = NULL;
+	if (var_case == 'l')
+		base = "0123456789abcdef";
+	else if (var_case == 'u')
+		base = "0123456789ABCDEF";
+	if (base)
+	{
+		if (nbr < 16)
+			*print_len += write(1, &base[nbr], 1);
+		else
+		{
+			ft_putunsignedhex(nbr / 16, print_len, var_case);
+			*print_len += write(1, &base[nbr % 16], 1);
+		}
 	}
 }
