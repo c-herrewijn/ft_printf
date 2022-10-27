@@ -6,7 +6,7 @@
 /*   By: cherrewi <cherrewi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 20:30:20 by cherrewi      #+#    #+#                 */
-/*   Updated: 2022/10/27 16:33:08 by cherrewi      ########   odam.nl         */
+/*   Updated: 2022/10/27 17:17:30 by cherrewi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,10 @@ static void	print_va_arg(const char format_char, int *print_len, va_list ap)
 	unsigned long long int	uns_nr;
 	char					*str;
 
-	if (format_char == '%')
-	{
-		*print_len += write(1, "%", 1);
-	}
 	if (format_char == 'c')
 	{
 		c = va_arg(ap, int);
 		*print_len += write(1, &c, 1);
-	}
-	if (format_char == 'd' || format_char == 'i')
-	{
-		nr = va_arg(ap, int);
-		*print_len += ft_putnbr_base(nr, "0123456789");
-	}
-	if (format_char == 'p')
-	{
-		uns_nr = va_arg(ap, unsigned long long int);
-		*print_len += write(1, "0x", 2);
-		ft_putpointer(uns_nr, print_len);
-	}
-	if (format_char == 'x')
-	{
-		uns_nr = va_arg(ap, unsigned int);
-		ft_putunsignedhex(uns_nr, print_len, 'l');
-	}
-	if (format_char == 'X')
-	{
-		uns_nr = va_arg(ap, unsigned int);
-		ft_putunsignedhex(uns_nr, print_len, 'u');
 	}
 	if (format_char == 's')
 	{
@@ -59,6 +34,36 @@ static void	print_va_arg(const char format_char, int *print_len, va_list ap)
 		}
 		else
 			*print_len += write(1, "(null)", 6);
+	}
+	if (format_char == 'p')
+	{
+		uns_nr = va_arg(ap, unsigned long long int);
+		*print_len += write(1, "0x", 2);
+		ft_putpointer(uns_nr, print_len);
+	}
+	if (format_char == 'd' || format_char == 'i')
+	{
+		nr = va_arg(ap, int);
+		*print_len += ft_putnbr_base(nr, "0123456789");
+	}
+	if (format_char == 'u')
+	{
+		uns_nr = va_arg(ap, unsigned int);
+		ft_putunsnr(uns_nr, print_len);
+	}
+	if (format_char == 'x')
+	{
+		uns_nr = va_arg(ap, unsigned int);
+		ft_putunsignedhex(uns_nr, print_len, 'l');
+	}
+	if (format_char == 'X')
+	{
+		uns_nr = va_arg(ap, unsigned int);
+		ft_putunsignedhex(uns_nr, print_len, 'u');
+	}
+	if (format_char == '%')
+	{
+		*print_len += write(1, "%", 1);
 	}
 }
 
