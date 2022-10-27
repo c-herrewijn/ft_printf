@@ -6,7 +6,7 @@
 /*   By: cherrewi <cherrewi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 20:30:20 by cherrewi      #+#    #+#                 */
-/*   Updated: 2022/10/26 11:51:38 by cherrewi      ########   odam.nl         */
+/*   Updated: 2022/10/27 11:16:53 by cherrewi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,17 @@ static void	print_va_arg(const char format_char, int *print_len, va_list ap)
 
 	if (format_char == '%')
 	{
-		write(1, "%", 1);
-		*print_len += 1;
+		*print_len += write(1, "%", 1);
 	}
 	if (format_char == 'c')
 	{
 		c = va_arg(ap, int);
-		write(1, &c, 1);
-		*print_len += 1;
+		*print_len += write(1, &c, 1);
 	}
 	if (format_char == 'd')
 	{
 		nr = va_arg(ap, int);
-		str = ft_itoa(nr);
-		ft_putstr_fd(str, 1);
-		*print_len += ft_strlen(str);
-		free (str);
+		*print_len += ft_putnbr_base(nr, "0123456789");
 	}
 	if (format_char == 's')
 	{
@@ -46,10 +41,7 @@ static void	print_va_arg(const char format_char, int *print_len, va_list ap)
 			*print_len += ft_strlen(str);
 		}
 		else
-		{
-			write(1, "(null)", 6);
-			*print_len += 6;
-		}
+			*print_len += write(1, "(null)", 6);
 	}
 }
 
@@ -73,8 +65,7 @@ int	ft_printf(const char *format, ...)
 		}
 		else
 		{
-			write(1, format, 1);
-			print_len++;
+			print_len += write(1, format, 1);
 		}
 		format++;
 	}
