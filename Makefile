@@ -6,12 +6,12 @@
 #    By: cherrewi <cherrewi@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2022/10/24 14:31:32 by cherrewi      #+#    #+#                  #
-#    Updated: 2022/10/27 11:18:21 by cherrewi      ########   odam.nl          #
+#    Updated: 2022/10/27 17:43:02 by cherrewi      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-SRCS = ft_printf.c validations.c ft_putnbr_base.c
+SRCS = ft_printf.c validations.c write.c
 OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 OBJDIR = objects
 FLAGS = -Wall -Wextra -Werror
