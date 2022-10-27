@@ -6,11 +6,22 @@
 /*   By: cherrewi <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/14 16:32:47 by cherrewi      #+#    #+#                 */
-/*   Updated: 2022/10/27 17:51:03 by cherrewi      ########   odam.nl         */
+/*   Updated: 2022/10/27 18:07:04 by cherrewi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	printf_putstr(char *str, int *print_len)
+{
+	if (str)
+	{
+		ft_putstr_fd(str, 1);
+		*print_len += ft_strlen(str);
+	}
+	else
+		*print_len += write(1, "(null)", 6);
+}
 
 void	printf_putnbr(int nbr, int *print_len)
 {

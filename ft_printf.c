@@ -6,7 +6,7 @@
 /*   By: cherrewi <cherrewi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 20:30:20 by cherrewi      #+#    #+#                 */
-/*   Updated: 2022/10/27 17:52:39 by cherrewi      ########   odam.nl         */
+/*   Updated: 2022/10/27 18:09:26 by cherrewi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 static void	print_va_arg(const char format_char, int *print_len, va_list ap)
 {
 	char					c;
-	long long int			nr;
-	unsigned long long int	uns_nr;
-	char					*str;
 
 	if (format_char == 'c')
 	{
@@ -25,46 +22,22 @@ static void	print_va_arg(const char format_char, int *print_len, va_list ap)
 		*print_len += write(1, &c, 1);
 	}
 	if (format_char == 's')
-	{
-		str = va_arg(ap, char *);
-		if (str)
-		{
-			ft_putstr_fd(str, 1);
-			*print_len += ft_strlen(str);
-		}
-		else
-			*print_len += write(1, "(null)", 6);
-	}
+		printf_putstr(va_arg(ap, char *), print_len);
 	if (format_char == 'p')
 	{
-		uns_nr = va_arg(ap, unsigned long long int);
 		*print_len += write(1, "0x", 2);
-		printf_putpointer(uns_nr, print_len);
+		printf_putpointer(va_arg(ap, unsigned long long int), print_len);
 	}
 	if (format_char == 'd' || format_char == 'i')
-	{
-		nr = va_arg(ap, int);
-		printf_putnbr(nr, print_len);
-	}
+		printf_putnbr(va_arg(ap, int), print_len);
 	if (format_char == 'u')
-	{
-		uns_nr = va_arg(ap, unsigned int);
-		printf_putunsnbr(uns_nr, print_len);
-	}
+		printf_putunsnbr(va_arg(ap, unsigned int), print_len);
 	if (format_char == 'x')
-	{
-		uns_nr = va_arg(ap, unsigned int);
-		printf_putunsignedhex(uns_nr, print_len, 'l');
-	}
+		printf_putunsignedhex(va_arg(ap, unsigned int), print_len, 'l');
 	if (format_char == 'X')
-	{
-		uns_nr = va_arg(ap, unsigned int);
-		printf_putunsignedhex(uns_nr, print_len, 'u');
-	}
+		printf_putunsignedhex(va_arg(ap, unsigned int), print_len, 'u');
 	if (format_char == '%')
-	{
 		*print_len += write(1, "%", 1);
-	}
 }
 
 int	ft_printf(const char *format, ...)
