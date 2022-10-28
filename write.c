@@ -6,7 +6,7 @@
 /*   By: cherrewi <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/14 16:32:47 by cherrewi      #+#    #+#                 */
-/*   Updated: 2022/10/27 18:07:04 by cherrewi      ########   odam.nl         */
+/*   Updated: 2022/10/28 15:33:06 by cherrewi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	printf_putunsnbr(unsigned int nbr, int *print_len)
 	char	c;
 
 	if (nbr < 10)
-	{		
+	{
 		c = nbr + '0';
 		*print_len += write(1, &c, 1);
 	}

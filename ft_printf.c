@@ -6,7 +6,7 @@
 /*   By: cherrewi <cherrewi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 20:30:20 by cherrewi      #+#    #+#                 */
-/*   Updated: 2022/10/28 10:35:11 by cherrewi      ########   odam.nl         */
+/*   Updated: 2022/10/28 15:32:33 by cherrewi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	format_valid(const char *format_str, char *format_chars)
 	while (format_str[i])
 	{
 		if (format_str[i] == '%')
-		{			
+		{
 			if (format_str[i + 1] && ft_strchr(format_chars, format_str[i + 1]))
 			{
 				i++;
