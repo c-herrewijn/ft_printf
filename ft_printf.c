@@ -6,7 +6,7 @@
 /*   By: cherrewi <cherrewi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 20:30:20 by cherrewi      #+#    #+#                 */
-/*   Updated: 2022/10/28 10:04:29 by cherrewi      ########   odam.nl         */
+/*   Updated: 2022/10/28 10:35:11 by cherrewi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static int	format_valid(const char *format_str, char *format_chars)
 	int	format_count;
 	int	i;
 
+	if (!format_str || !format_chars)
+		return (-1);
 	i = 0;
 	format_count = 0;
 	while (format_str[i])
@@ -91,9 +93,7 @@ int	ft_printf(const char *format, ...)
 			print_va_arg(*format, &print_len, ap);
 		}
 		else
-		{
 			print_len += write(1, format, 1);
-		}
 		format++;
 	}
 	va_end(ap);
