@@ -6,7 +6,7 @@
 /*   By: cherrewi <cherrewi@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/23 20:30:20 by cherrewi      #+#    #+#                 */
-/*   Updated: 2023/02/08 15:57:45 by cherrewi      ########   odam.nl         */
+/*   Updated: 2023/02/08 16:05:16 by cherrewi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ static void	print_va_arg(const char format_char, int *print_len, va_list ap)
 	if (format_char == 'p')
 	{
 		*print_len += write(1, "0x", 2);
-		printf_putunsignedhex(va_arg(ap, unsigned long long int), print_len, 'l');
+		printf_putunsignedhex(va_arg(ap, unsigned long long int),
+			print_len, 'l');
 	}
 	if (format_char == 'd' || format_char == 'i')
 		printf_putnbr(va_arg(ap, int), print_len);

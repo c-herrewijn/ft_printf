@@ -6,7 +6,7 @@
 /*   By: cherrewi <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/14 16:32:47 by cherrewi      #+#    #+#                 */
-/*   Updated: 2023/02/08 15:53:21 by cherrewi      ########   odam.nl         */
+/*   Updated: 2023/02/08 16:06:51 by cherrewi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	printf_putunsnbr(unsigned int nbr, int *print_len)
 	}
 }
 
-void	printf_putunsignedhex(unsigned long long nbr, int *print_len, char var_case)
+void	printf_putunsignedhex(unsigned long long nbr,
+			int *print_len, char var_case)
 {
 	char	*base;
 
