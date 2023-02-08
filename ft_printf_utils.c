@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   write.c                                            :+:    :+:            */
+/*   ft_printf_utils.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: cherrewi <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/14 16:32:47 by cherrewi      #+#    #+#                 */
-/*   Updated: 2022/10/28 15:33:06 by cherrewi      ########   odam.nl         */
+/*   Updated: 2023/02/08 15:53:21 by cherrewi      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	printf_putunsnbr(unsigned int nbr, int *print_len)
 	}
 }
 
-void	printf_putunsignedhex(unsigned int nbr, int *print_len, char var_case)
+void	printf_putunsignedhex(unsigned long long nbr, int *print_len, char var_case)
 {
 	char	*base;
 
@@ -83,19 +83,5 @@ void	printf_putunsignedhex(unsigned int nbr, int *print_len, char var_case)
 			printf_putunsignedhex(nbr / 16, print_len, var_case);
 			*print_len += write(1, &base[nbr % 16], 1);
 		}
-	}
-}
-
-void	printf_putpointer(unsigned long long nbr, int *print_len)
-{
-	char	*base;
-
-	base = "0123456789abcdef";
-	if (nbr < 16)
-		*print_len += write(1, &base[nbr], 1);
-	else
-	{
-		printf_putpointer(nbr / 16, print_len);
-		*print_len += write(1, &base[nbr % 16], 1);
 	}
 }
